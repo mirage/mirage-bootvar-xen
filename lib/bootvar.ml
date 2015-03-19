@@ -23,28 +23,37 @@ open Re
 type t = { cmd_line : string;
            parameters : (string * string) list }
 
-(* read boot parameter line and store in assoc list - expected format is "key1=val1 key2=val2" *)
-let create = 
+let get_cmd_line () =
   (* Originally based on mirage-skeleton/xen/static_website+ip code for reading
    * boot parameters, but we now read from xenstore for better ARM
    * compatibility.  *)
   OS.Xs.make () >>= fun client ->
   OS.Xs.(immediate client (fun x -> read x "vm")) >>= fun vm ->
-  OS.Xs.(immediate client (fun x -> read x (vm^"/image/cmdline"))) >>= fun cmd_line ->
+  OS.Xs.(immediate client (fun x -> read x (vm^"/image/cmdline")))
   (*let cmd_line = OS.Start_info.((get ()).cmd_line) in -- currently only works on x86 *)
+
+(* read boot parameter line and store in assoc list - expected format is "key1=val1 key2=val2" *)
+let create () = 
+  get_cmd_line () >>= fun cmd_line ->
   let entries = Re_str.(split (regexp_string " ") cmd_line) in
-  let vartuples =
+  let parameters =
     List.map (fun x ->
         match Re_str.(split (regexp_string "=") x) with 
-        | [a;b] -> Printf.printf "%s=%s\n" a b ; (a,b)
-        | _ -> raise (Failure "malformed boot parameters")) entries
+        | [a;b] -> (a,b)
+        | _ -> raise (Failure "Malformed boot parameters")) entries
   in
-  Lwt.return { cmd_line = cmd_line; parameters = vartuples}
+  let t = 
+      try 
+          `Ok { cmd_line; parameters}
+      with 
+           Failure msg -> `Error msg
+  in
+  return t
 
-(* get boot parameter *)
+(* Get boot parameter. Raises Not_found if the parameter is not found. *)
+let get_exn t parameter = 
+  List.assoc parameter t.parameters
+
+(* Get boot parameter. Returns None if the parameter is not found. *)
 let get t parameter = 
-  try 
-    List.assoc parameter t.parameters
-  with
-    Not_found -> Printf.printf "Boot parameter %s not found\n" parameter; raise Not_found
-
+  try Some (get_exn t parameter) with Not_found -> None
