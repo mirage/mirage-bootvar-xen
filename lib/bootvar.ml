@@ -14,10 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  *)
-open V1_LWT
 open Lwt
-open Ipaddr
-open String
 open Re
 
 type t = { cmd_line : string;
