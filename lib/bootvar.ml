@@ -42,19 +42,19 @@ let create () =
         | _ -> raise (Failure "Malformed boot parameters")) entries
   in
   let t = 
-      try 
-          `Ok { cmd_line; parameters}
-      with 
-           Failure msg -> `Error msg
+    try 
+      `Ok { cmd_line; parameters}
+    with 
+      Failure msg -> `Error msg
   in
   return t
 
 (* Get boot parameter. Raises Not_found if the parameter is not found. *)
 let get_exn t parameter = 
   try
-      List.assoc parameter t.parameters
+    List.assoc parameter t.parameters
   with
-      Not_found -> raise (Parameter_not_found parameter)
+    Not_found -> raise (Parameter_not_found parameter)
 
 (* Get boot parameter. Returns None if the parameter is not found. *)
 let get t parameter = 
