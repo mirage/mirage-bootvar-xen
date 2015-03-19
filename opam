@@ -17,4 +17,6 @@ remove: [
 depends: [ 
   "mirage-xen"
   "mirage-types"
+  "ipaddr"
+  "re"
 ]
