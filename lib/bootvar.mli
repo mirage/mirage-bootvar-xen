@@ -22,3 +22,5 @@ val create : unit -> [`Ok of t | `Error of string] Lwt.t
 val get : t -> string -> string option
 
 val get_exn : t -> string -> string
+
+exception Parameter_not_found of string

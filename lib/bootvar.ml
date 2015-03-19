@@ -20,6 +20,8 @@ open Re
 type t = { cmd_line : string;
            parameters : (string * string) list }
 
+exception Parameter_not_found of string
+
 let get_cmd_line () =
   (* Originally based on mirage-skeleton/xen/static_website+ip code for reading
    * boot parameters, but we now read from xenstore for better ARM
@@ -49,8 +51,14 @@ let create () =
 
 (* Get boot parameter. Raises Not_found if the parameter is not found. *)
 let get_exn t parameter = 
-  List.assoc parameter t.parameters
+  try
+      List.assoc parameter t.parameters
+  with
+      Not_found -> raise (Parameter_not_found parameter)
 
 (* Get boot parameter. Returns None if the parameter is not found. *)
 let get t parameter = 
-  try Some (get_exn t parameter) with Not_found -> None
+  try 
+    Some (get_exn t parameter) 
+  with 
+    Parameter_not_found x -> None
