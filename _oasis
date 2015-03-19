@@ -1,0 +1,14 @@
+OASISFormat: 0.4
+Name:        mirage-bootvar
+Version:     0.1
+Synopsis:    Library for reading MirageOS unikernel boot parameters in Xen  
+Authors:     Magnus Skjegstad
+License:     ISC
+Plugins:     META (0.3), DevFiles (0.3)
+BuildTools:  ocamlbuild
+
+Library "mirage-bootvar"
+  Path:              lib/
+  Findlibname:       mirage-bootvar
+  BuildDepends:      mirage-types, mirage-xen
+  Modules:           Bootvar
