@@ -16,6 +16,12 @@ sudo xl create unikernel.xl 'extra="key1=val1 key2=val2"'
 
 Bootvar was originally a part of [mirage-mimic](http://github.com/MagnusS/mirage-mimic), but is now released as a separate library. 
 
+## Install
+
+```
+opam pin add mirage-bootvar https://github.com/MagnusS/mirage-bootvar.git
+```
+
 ## License
 Bootvar is published under the ISC license. See [LICENSE](LICENSE) for details.
 
