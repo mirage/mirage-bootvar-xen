@@ -22,7 +22,7 @@
  *
  * $ mirage configure --xen
  * $ make 
- * $ sudo xl create unikernel.xl -c hello=world  
+ * $ sudo xl create unikernel.xl -c 'extra="hello=world"'
  *)
 open Lwt
 
