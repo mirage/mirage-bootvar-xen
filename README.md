@@ -19,7 +19,7 @@ Bootvar was originally a part of [mirage-mimic](http://github.com/MagnusS/mirage
 ## Install
 
 ```
-opam pin add mirage-bootvar https://github.com/MagnusS/mirage-bootvar.git
+opam pin add mirage-bootvar https://github.com/MagnusS/mirage-bootvar-xen.git
 ```
 
 ## License
