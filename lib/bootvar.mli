@@ -18,9 +18,16 @@
 type t
 
 val create : unit -> [`Ok of t | `Error of string] Lwt.t
+(** Read boot parameter line. Expected format is ["key1=val1 key2=val2 ..."] *)
 
 val get : t -> string -> string option
-
-val get_exn : t -> string -> string
+(** Get boot parameter. Returns [None] if the parameter is not found. *)
 
 exception Parameter_not_found of string
+
+val get_exn : t -> string -> string
+(** Get boot parameter. Raises [Parameter_not_found] if the parameter is not
+    found. *)
+
+val argv : t -> string array
+(** [argv t] is an [argv]-like array corresponding to [t]. *)
