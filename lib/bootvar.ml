@@ -57,10 +57,10 @@ let get_exn t parameter =
     Not_found -> raise (Parameter_not_found parameter)
 
 (* Get boot parameter. Returns None if the parameter is not found. *)
-let get t parameter = 
-  try 
-    Some (get_exn t parameter) 
-  with 
-    Parameter_not_found x -> None
+let get t parameter =
+  try
+    Some (List.assoc parameter t.parameters)
+  with
+    Not_found -> None
 
 let parameters x = x.parameters
