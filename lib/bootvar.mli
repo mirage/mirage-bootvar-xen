@@ -24,3 +24,5 @@ val get : t -> string -> string option
 val get_exn : t -> string -> string
 
 exception Parameter_not_found of string
+
+val parameters : t -> (string * string) list

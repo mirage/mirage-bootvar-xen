@@ -62,3 +62,5 @@ let get t parameter =
     Some (get_exn t parameter) 
   with 
     Parameter_not_found x -> None
+
+let parameters x = x.parameters
