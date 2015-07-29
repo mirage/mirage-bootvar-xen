@@ -31,7 +31,6 @@ let get_cmd_line () =
   OS.Xs.(immediate client (fun x -> read x (vm^"/image/cmdline")))
   (*let cmd_line = OS.Start_info.((get ()).cmd_line) in -- currently only works on x86 *)
 
-(* read boot parameter line and store in assoc list - expected format is "key1=val1 key2=val2" *)
 let create () = 
   get_cmd_line () >>= fun cmd_line ->
   let entries = Re_str.(split (regexp_string " ") cmd_line) in
@@ -49,16 +48,16 @@ let create () =
   in
   return t
 
-(* Get boot parameter. Raises Not_found if the parameter is not found. *)
 let get_exn t parameter = 
   try
     List.assoc parameter t.parameters
   with
     Not_found -> raise (Parameter_not_found parameter)
 
-(* Get boot parameter. Returns None if the parameter is not found. *)
-let get t parameter = 
-  try 
-    Some (get_exn t parameter) 
-  with 
-    Parameter_not_found x -> None
+let get t parameter =
+  try
+    Some (List.assoc parameter t.parameters)
+  with
+    Not_found -> None
+
+let parameters x = x.parameters
