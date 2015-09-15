@@ -18,8 +18,10 @@ Bootvar was originally a part of [mirage-mimic](http://github.com/MagnusS/mirage
 
 ## Install
 
+Bootvar can be installed with `opam`:
+
 ```
-opam pin add mirage-bootvar https://github.com/MagnusS/mirage-bootvar-xen.git
+opam install mirage-bootvar-xen
 ```
 
 ## License
