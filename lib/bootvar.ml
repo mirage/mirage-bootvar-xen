@@ -61,3 +61,17 @@ let get t parameter =
     Not_found -> None
 
 let parameters x = x.parameters
+
+let to_argv x =
+  let argv = Array.make (1 + List.length x) "" in
+  let f i (k,v) =
+    let dash = if String.length k = 1 then "-" else "--" in
+    argv.(i + 1) <- Printf.sprintf "%s%s=%s" dash k v
+  in
+  List.iteri f x ;
+  argv
+
+let argv () =
+  create () >|= function
+  | `Ok t -> `Ok (to_argv @@ parameters t)
+  | `Error s -> `Error s

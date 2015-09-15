@@ -31,3 +31,6 @@ exception Parameter_not_found of string
 
 (** Returns the assoc list of key and values. *)
 val parameters : t -> (string * string) list
+
+(** Return an argv-like structure. *)
+val argv : unit -> [`Ok of string array | `Error of string] Lwt.t
