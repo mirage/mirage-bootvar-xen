@@ -1,0 +1,13 @@
+0.3 (2015-09-15)
+* Add `Bootvar.parameters` to export the boot paramters (#5, by @Drup)
+* Add `Bootvar.argv`, which reformat `Bootvar.parameters` to emulates
+  Sys.argv. (#7, by @Drup)
+
+0.2  (2015-03-19)
+* get no longer raises exception
+* add get_exn which raises Parameter_not_found on error
+* return 'Ok of t | 'Error of msg in create instead of raising exception on error
+* remove debug output
+
+0.1 (2015-03-19)
+* Initial release
