@@ -15,7 +15,6 @@
  *
  *)
 open Lwt
-open Re
 
 type t = { cmd_line : string;
            parameters : (string * string) list }
@@ -38,7 +37,8 @@ let create () =
     List.map (fun x ->
         match Re_str.(split (regexp_string "=") x) with 
         | [a;b] -> (a,b)
-        | _ -> raise (Failure "Malformed boot parameters")) entries
+        | _ -> raise (Failure (Printf.sprintf "Malformed boot parameter %S" x))
+      ) entries
   in
   let t = 
     try 
