@@ -21,3 +21,4 @@ true: annot, bin_annot
 <lib/*.ml{,i,y}>: pkg_re
 <lib/*.ml{,i,y}>: pkg_re.str
 # OASIS_STOP
+true: warn(A-44), strict_sequence

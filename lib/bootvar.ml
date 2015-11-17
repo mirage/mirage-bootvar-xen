@@ -15,7 +15,6 @@
  *
  *)
 open Lwt
-open Re
 
 type t = { cmd_line : string;
            parameters : (string * string) list }
