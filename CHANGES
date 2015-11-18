@@ -1,3 +1,8 @@
+0.3.1
+* Include the string in error message for malformed variables (#11, by @talex5)
+* Enable warnings and remove an unused `Re` import (#11, by @talex5)
+* Add travis.yml to Github repo (#12)
+
 0.3 (2015-09-15)
 * Add `Bootvar.parameters` to export the boot paramters (#5, by @Drup)
 * Add `Bootvar.argv`, which reformat `Bootvar.parameters` to emulates

@@ -1,5 +1,7 @@
 # Bootvar
 
+[![Build Status](https://travis-ci.org/mirage/mirage-bootvar-xen.svg)](https://travis-ci.org/mirage/mirage-bootvar-xen)
+
 Simple library for reading MirageOS unikernel boot parameters from Xen.
 
 To send boot parameters to the unikernel you can either add them as options in the "extra=" field in the .xl-file, like this:
