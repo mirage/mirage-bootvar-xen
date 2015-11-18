@@ -4,5 +4,3 @@ script: bash -ex .travis-opam.sh
 sudo: required
 env:
     - OCAML_VERSION=4.01 
-      EXTRA_DEPS="mirage"
-      POST_INSTALL_HOOK="cd examples && mirage configure --xen && make && mirage clean"
