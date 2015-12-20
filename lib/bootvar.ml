@@ -26,9 +26,12 @@ let get_cmd_line () =
    * boot parameters, but we now read from xenstore for better ARM
    * compatibility.  *)
   OS.Xs.make () >>= fun client ->
-  OS.Xs.(immediate client (fun x -> read x "vm")) >>= fun vm ->
-  OS.Xs.(immediate client (fun x -> read x (vm^"/image/cmdline")))
-  (*let cmd_line = OS.Start_info.((get ()).cmd_line) in -- currently only works on x86 *)
+  Lwt.catch (fun () ->
+    OS.Xs.(immediate client (fun x -> read x "vm")) >>= fun vm ->
+    OS.Xs.(immediate client (fun x -> read x (vm^"/image/cmdline"))))
+    (fun _ ->
+       let cmdline = (OS.Start_info.get ()).OS.Start_info.cmd_line in
+       Lwt.return cmdline)
 
 let create () = 
   get_cmd_line () >>= fun cmd_line ->
