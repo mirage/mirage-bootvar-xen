@@ -34,18 +34,25 @@ let get_cmd_line () =
        Lwt.return cmdline)
 
 let create () = 
-  get_cmd_line () >>= fun cmd_line ->
-  let entries = Re_str.(split (regexp_string " ") cmd_line) in
+  get_cmd_line () >>= fun cmd_line_raw ->
+  (* Strip leading whitespace *)
+  let entries = Parse_argv.parse cmd_line_raw in
+  let filter_map fn l =
+    List.fold_left (fun acc x ->
+        match fn x with Some y -> y::acc | None -> acc) [] l
+  in
   let parameters =
-    List.map (fun x ->
-        match Re_str.(split (regexp_string "=") x) with 
-        | [a;b] -> (a,b)
-        | _ -> raise (Failure (Printf.sprintf "Malformed boot parameter %S" x))
+    filter_map (fun x ->
+        match Astring.String.cut ~sep:"=" x with
+        | Some (a,b) ->
+          Some (a,b)
+        | _ ->
+          Printf.printf "Ignoring malformed parameter: %s" x; None
       ) entries
   in
   let t = 
     try 
-      `Ok { cmd_line; parameters}
+      `Ok { cmd_line=cmd_line_raw ; parameters}
     with 
       Failure msg -> `Error msg
   in
