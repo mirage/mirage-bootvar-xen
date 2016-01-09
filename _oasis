@@ -10,5 +10,5 @@ BuildTools:  ocamlbuild
 Library "mirage-bootvar"
   Path:              lib/
   Findlibname:       mirage-bootvar
-  BuildDepends:      lwt, mirage-xen, re, re.str
+  BuildDepends:      lwt, mirage-xen, astring
   Modules:           Bootvar
