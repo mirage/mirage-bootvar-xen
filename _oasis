@@ -1,6 +1,6 @@
 OASISFormat: 0.4
 Name:        mirage-bootvar-xen
-Version:     0.3
+Version:     0.3.1
 Synopsis:    Library for reading MirageOS unikernel boot parameters in Xen
 Authors:     Magnus Skjegstad
 License:     ISC
