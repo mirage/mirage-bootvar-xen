@@ -7,7 +7,13 @@ bug-reports: "https://github.com/mirage/mirage-bootvar-xen/issues/"
 dev-repo: "https://github.com/mirage/mirage-bootvar-xen.git"
 license: "ISC"
 build: [
-  [make]
+  ["ocaml" "setup.ml" "-configure" "--disable-tests"]
+  ["ocaml" "setup.ml" "-build"]
+]
+build-test: [
+  ["ocaml" "setup.ml" "-configure" "--enable-tests"]
+  ["ocaml" "setup.ml" "-build"]
+  ["ocaml" "setup.ml" "-test"]
 ]
 install: [make "install"]
 remove: [
