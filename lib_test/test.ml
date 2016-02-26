@@ -47,6 +47,13 @@ let test_parse () =
       end;
       assert (result=expected)) tests
 
+let negative_test () =
+  let str = "  \\" in
+  log "Testing parse of %s (should fail)" str;
+  match Parse_argv.parse str with
+  | `Ok x -> assert false
+  | `Error _ -> ()
+
 let _ =
   Arg.parse [
     "-verbose", Arg.Unit (fun _ -> verbose := true), "Run in verbose mode";
@@ -55,6 +62,7 @@ let _ =
 
   let suite = "parser" >::: [
     "test parse" >:: test_parse;
+    "negative test" >:: negative_test;
   ] in
   run_test_tt ~verbose:!verbose suite
 
