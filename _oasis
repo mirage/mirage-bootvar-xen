@@ -11,7 +11,7 @@ Library "mirage-bootvar"
   Path:              lib/
   Findlibname:       mirage-bootvar
   BuildDepends:      lwt, mirage-xen, astring
-  Modules:           Bootvar
+  Modules:           Bootvar, Parse_argv
 
 Executable test
   CompiledObject:     best
