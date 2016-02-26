@@ -41,22 +41,22 @@ let create () =
     List.fold_left (fun acc x ->
         match fn x with Some y -> y::acc | None -> acc) [] l
   in
-  let parameters =
-    filter_map (fun x ->
-        match Astring.String.cut ~sep:"=" x with
-        | Some (a,b) ->
-          Some (a,b)
-        | _ ->
-          Printf.printf "Ignoring malformed parameter: %s" x; None
-      ) entries
-  in
-  let t = 
-    try 
+  let result =
+    match entries with
+    | `Ok l ->
+      let parameters =
+        filter_map (fun x ->
+            match Astring.String.cut ~sep:"=" x with
+            | Some (a,b) ->
+              Some (a,b)
+            | _ ->
+              Printf.printf "Ignoring malformed parameter: %s" x; None
+          ) l
+      in
       `Ok { cmd_line=cmd_line_raw ; parameters}
-    with 
-      Failure msg -> `Error msg
+    | `Error _ as e -> e
   in
-  return t
+  return result
 
 let get_exn t parameter = 
   try

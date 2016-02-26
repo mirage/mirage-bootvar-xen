@@ -22,11 +22,11 @@ let verbose = ref false
 let log = Printf.ksprintf (fun s -> if !verbose then Printf.fprintf stdout "%s\n%!" s)
 
 let tests =
-  [ "foo bar baz", ["foo"; "bar"; "baz"];
-    "foo \"bar\" baz", ["foo"; "bar"; "baz"];
-    "f\\\ oo b\\\"r baz", ["f oo"; "b\"r"; "baz"];
-    "foo bar\"bie\"boo baz", ["foo"; "barbieboo"; "baz"];
-    "  ", []
+  [ "foo bar baz", `Ok ["foo"; "bar"; "baz"];
+    "foo \"bar\" baz", `Ok ["foo"; "bar"; "baz"];
+    "f\\\ oo b\\\"r baz", `Ok ["f oo"; "b\"r"; "baz"];
+    "foo bar\"bie\"boo baz", `Ok ["foo"; "barbieboo"; "baz"];
+    "  ", `Ok []
   ]
 
 let test_parse () =
@@ -35,8 +35,13 @@ let test_parse () =
       let result = Parse_argv.parse input in
       if result <> expected
       then begin
-        let tostr l = String.concat ","
-            (List.map (fun x -> Printf.sprintf "'%s'" x) l) in
+        let tostr l =
+          match l with
+          | `Ok list ->
+            String.concat ","
+              (List.map (fun x -> Printf.sprintf "'%s'" x) list)
+          | `Error e -> Printf.sprintf "Error: %s" e
+        in
         Printf.fprintf stderr "Error - failed to parse. Got:\n%s\nExpected\n%s\n"
           (tostr result) (tostr expected)
       end;

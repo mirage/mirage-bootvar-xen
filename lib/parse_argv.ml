@@ -50,15 +50,18 @@ let parse s =
           | Some c ->
             let so_far' = String.(sub (of_char c)) :: data :: so_far in
             inner in_quoted (String.Sub.tail rem) so_far' acc
-          | None -> raise Exit
+          | None ->
+            `Error "Invalid escaping at end of string"
         end
       | Some c ->
-        Printf.printf "Something went wrong in the argv parser: Matched '%c'" c;
-        raise Exit
+        let e = Printf.sprintf "Something went wrong in the argv parser: Matched '%c'" c in
+        `Error e
       | None ->
         let so_far = List.rev (data :: so_far) in
-        List.map (String.Sub.to_string) (List.rev ((String.Sub.concat so_far) :: acc))
+        `Ok (List.map (String.Sub.to_string) (List.rev ((String.Sub.concat so_far) :: acc)))
     in
     inner false s [] []
   in
-  split (String.sub s |> skip_white) |> List.filter (fun s -> String.length s > 0)
+  match split (String.sub s |> skip_white) with
+  | `Ok s -> `Ok (List.filter (fun s -> String.length s > 0) s)
+  | `Error _ as e -> e
