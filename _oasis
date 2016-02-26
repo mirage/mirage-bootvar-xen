@@ -12,3 +12,16 @@ Library "mirage-bootvar"
   Findlibname:       mirage-bootvar
   BuildDepends:      lwt, mirage-xen, astring
   Modules:           Bootvar
+
+Executable test
+  CompiledObject:     best
+  Path:               lib_test
+  MainIs:             test.ml
+  Custom:             true
+  Install:            false
+  BuildDepends:       mirage-bootvar, oUnit
+
+Test test
+  Command:            ./test.native
+  Run:                true
+
