@@ -50,7 +50,7 @@ let create () =
             | Some (a,b) ->
               Some (a,b)
             | _ ->
-              Printf.printf "Ignoring malformed parameter: %s" x; None
+              Printf.printf "Ignoring malformed parameter: %s\n" x; None
           ) l
       in
       `Ok { cmd_line=cmd_line_raw ; parameters}
