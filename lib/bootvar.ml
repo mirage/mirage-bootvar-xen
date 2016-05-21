@@ -35,10 +35,10 @@ let get_cmd_line () =
 
 let create () = 
   get_cmd_line () >>= fun cmd_line ->
-  let entries = Re_str.(split (regexp_string " ") cmd_line) in
+  let entries = Astring.String.cuts ~sep:" " ~empty:false cmd_line in
   let parameters =
     List.map (fun x ->
-        match Re_str.(split (regexp_string "=") x) with 
+        match Astring.String.cuts ~sep:"=" ~empty:false x with 
         | [a;b] -> (a,b)
         | _ -> raise (Failure (Printf.sprintf "Malformed boot parameter %S" x))
       ) entries

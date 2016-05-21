@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 133f156ecf1c693a14afb3964cf8ef2b)
+# DO NOT EDIT (digest: f52078a07559ba16e698ccb4ce48ba4d)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -16,9 +16,8 @@ true: annot, bin_annot
 "_darcs": not_hygienic
 # Library mirage-bootvar
 "lib/mirage-bootvar.cmxs": use_mirage-bootvar
+<lib/*.ml{,i,y}>: pkg_astring
 <lib/*.ml{,i,y}>: pkg_lwt
 <lib/*.ml{,i,y}>: pkg_mirage-xen
-<lib/*.ml{,i,y}>: pkg_re
-<lib/*.ml{,i,y}>: pkg_re.str
 # OASIS_STOP
 true: warn(A-44), strict_sequence

@@ -17,5 +17,5 @@ depends: [
   "mirage-xen" { >= "2.2.0" }
   "mirage-types"
   "ipaddr"
-  "re"
+  "astring"
 ]
