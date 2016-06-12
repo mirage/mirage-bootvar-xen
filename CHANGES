@@ -1,3 +1,7 @@
+0.3.2 (2016-06-09)
+* Use astring instead of re.str (#18 by @jonludlam)
+* Improve the parser to handle quoted strings and escaped characters; skip arguments that don't conform to 'a=b' rather than dying (#18 by @jonludlam)
+
 0.3.1 (2016-02-07)
 * Fall back to reading `OS.Start_info` if cmdline is not found in Xenstore (#13, by @jonludlam)
 * Include the string in error message for malformed variables (#11, by @talex5)
