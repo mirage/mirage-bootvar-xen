@@ -82,6 +82,6 @@ let to_argv x =
   argv
 
 let argv () =
-  create () >|= function
-  | `Ok t -> `Ok (to_argv @@ parameters t)
-  | `Error s -> `Error s
+  create () >>= function
+  | `Ok t -> return (to_argv @@ parameters t)
+  | `Error s -> fail_with s
