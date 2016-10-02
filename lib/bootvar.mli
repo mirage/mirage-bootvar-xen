@@ -33,4 +33,4 @@ exception Parameter_not_found of string
 val parameters : t -> (string * string) list
 
 (** Return an argv-like structure. *)
-val argv : unit -> [`Ok of string array | `Error of string] Lwt.t
+val argv : unit -> string array Lwt.t
