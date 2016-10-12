@@ -24,4 +24,5 @@ depends: [
   "mirage-types"
   "ipaddr"
   "astring"
+  "parse-argv"
 ]
