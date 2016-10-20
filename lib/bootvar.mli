@@ -19,7 +19,7 @@ type t
 
 (** Read boot parameter line and store in assoc list.
     Expected format is ["key1=val1 key2=val2"]. *)
-val create : unit -> [`Ok of t | `Error of string] Lwt.t
+val create : unit -> t Lwt.t
 
 (** Get boot parameter. Returns [None] if the parameter is not found. *)
 val get : t -> string -> string option

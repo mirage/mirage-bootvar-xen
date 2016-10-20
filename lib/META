@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: 54086469f92a007466416756a4ea150a)
+# DO NOT EDIT (digest: b7399f215abad052f0637be40e25acbe)
 version = "0.3.2"
 description = "Library for reading MirageOS unikernel boot parameters in Xen"
-requires = "lwt mirage-xen astring"
+requires = "lwt mirage-xen astring parse-argv"
 archive(byte) = "mirage-bootvar.cma"
 archive(byte, plugin) = "mirage-bootvar.cma"
 archive(native) = "mirage-bootvar.cmxa"

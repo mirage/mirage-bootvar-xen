@@ -36,27 +36,24 @@ let get_cmd_line () =
 let create () = 
   get_cmd_line () >>= fun cmd_line_raw ->
   (* Strip leading whitespace *)
-  let entries = Parse_argv.parse cmd_line_raw in
   let filter_map fn l =
     List.fold_left (fun acc x ->
         match fn x with Some y -> y::acc | None -> acc) [] l
   in
-  let result =
-    match entries with
-    | `Ok l ->
-      let parameters =
-        filter_map (fun x ->
-            match Astring.String.cut ~sep:"=" x with
-            | Some (a,b) ->
-              Some (a,b)
-            | _ ->
-              Printf.printf "Ignoring malformed parameter: %s\n" x; None
-          ) l
-      in
-      `Ok { cmd_line=cmd_line_raw ; parameters}
-    | `Error _ as e -> e
-  in
-  return result
+  let entries = Parse_argv.parse cmd_line_raw in
+  match entries with
+  | Error s -> fail_with s
+  | Ok l ->
+    let parameters =
+      filter_map (fun x ->
+        match Astring.String.cut ~sep:"=" x with
+        | Some (a,b) ->
+          Some (a,b)
+        | _ ->
+          Printf.printf "Ignoring malformed parameter: %s\n" x; None
+      ) l
+    in
+    Lwt.return { cmd_line=cmd_line_raw ; parameters}
 
 let get_exn t parameter = 
   try
@@ -82,6 +79,4 @@ let to_argv x =
   argv
 
 let argv () =
-  create () >>= function
-  | `Ok t -> return (to_argv @@ parameters t)
-  | `Error s -> fail_with s
+  create () >>= fun t -> return (to_argv @@ parameters t)

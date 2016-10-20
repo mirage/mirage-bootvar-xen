@@ -10,18 +10,5 @@ BuildTools:  ocamlbuild
 Library "mirage-bootvar"
   Path:              lib/
   Findlibname:       mirage-bootvar
-  BuildDepends:      lwt, mirage-xen, astring
-  Modules:           Bootvar, Parse_argv
-
-Executable test
-  CompiledObject:     best
-  Path:               lib_test
-  MainIs:             test.ml
-  Custom:             true
-  Install:            false
-  BuildDepends:       mirage-bootvar, oUnit
-
-Test test
-  Command:            ./test.native
-  Run:                true
-
+  BuildDepends:      lwt, mirage-xen, astring, parse-argv
+  Modules:           Bootvar
