@@ -69,7 +69,8 @@ let get t parameter =
 
 let parameters x = x.parameters
 
-let to_argv x =
+let to_argv ~filter x =
+  let x = List.filter filter x in
   let argv = Array.make (1 + List.length x) "" in
   let f i (k,v) =
     let dash = if String.length k = 1 then "-" else "--" in
@@ -78,5 +79,5 @@ let to_argv x =
   List.iteri f x ;
   argv
 
-let argv () =
-  create () >>= fun t -> return (to_argv @@ parameters t)
+let argv ?(filter=(fun _ -> true)) () =
+  create () >>= fun t -> return (to_argv ~filter @@ parameters t)
