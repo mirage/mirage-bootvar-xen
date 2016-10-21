@@ -7,15 +7,14 @@ bug-reports: "https://github.com/mirage/mirage-bootvar-xen/issues/"
 dev-repo: "https://github.com/mirage/mirage-bootvar-xen.git"
 license: "ISC"
 build: [
-  ["ocaml" "pkg/pkg.ml" "build"]
-]
-remove: [
-  ["ocamlfind" "remove" "mirage-bootvar"]
-  ["ocamlfind" "remove" "mirage-bootvar-xen"]
+  ["ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%"]
 ]
 depends: [
   "mirage-xen" { >= "2.2.0" }
+  "ocamlfind" {build}
+  "ocamlbuild" {build}
   "topkg" {build}
+  "lwt"
   "astring"
   "parse-argv"
 ]
