@@ -1,3 +1,11 @@
+0.4.0 (unreleased)
+* Remove examples directory, as the module is now directly used by the mirage front-end tool.
+* Add an optional `filter` parameter to `argv`, allowing users to only pass those arguments which cmdliner might expect to see.
+* Convert to topkg.
+* Change name to mirage-bootvar-xen from mirage-bootvar.
+* Move argv parsing to external library `parse_argv` and depend on that library.
+* Build against MirageOS version 3, and drop support for earlier MirageOS versions.
+
 0.3.2 (2016-06-09)
 * Use astring instead of re.str (#18 by @jonludlam)
 * Improve the parser to handle quoted strings and escaped characters; skip arguments that don't conform to 'a=b' rather than dying (#18 by @jonludlam)
