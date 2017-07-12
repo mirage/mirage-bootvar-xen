@@ -1,5 +1,8 @@
-0.4.0 (unreleased)
-----
+## v0.5.0 2017-07-12
+
+* Port to jbuilder and modernise test matrix.
+
+## v0.4.0 2017-01-20
 
 * Remove examples directory, as the module is now directly used by the mirage front-end tool.
 * Add an optional `filter` parameter to `argv`, allowing users to only pass those arguments which cmdliner might expect to see.
@@ -8,8 +11,7 @@
 * Move argv parsing to external library `parse_argv` and depend on that library.
 * Build against MirageOS version 3, and drop support for earlier MirageOS versions.
 
-0.3.2 (2016-06-09)
-----
+## v0.3.2 2016-06-09
 
 * Use astring instead of re.str (#18 by @jonludlam)
 * Improve the parser to handle quoted strings and escaped characters; skip arguments that don't conform to 'a=b' rather than dying (#18 by @jonludlam)

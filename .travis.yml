@@ -1,7 +1,12 @@
 language: c
-install: wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
-script: bash -ex .travis-opam.sh
-sudo: required
+sudo: false
+services:
+  - docker
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docker.sh
+script: bash -ex ./.travis-docker.sh
 env:
-  - OCAML_VERSION=4.03
-  - OCAML_VERSION=4.02
+  global:
+  - PACKAGE="mirage-bootvar-xen"
+  matrix:
+  - DISTRO="ubuntu-16.04" OCAML_VERSION="4.03.0"
+  - DISTRO="alpine" OCAML_VERSION="4.04.2"

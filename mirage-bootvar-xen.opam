@@ -6,15 +6,16 @@ homepage: "https://github.com/mirage/mirage-bootvar-xen"
 bug-reports: "https://github.com/mirage/mirage-bootvar-xen/issues/"
 dev-repo: "https://github.com/mirage/mirage-bootvar-xen.git"
 license: "ISC"
+
 build: [
-  ["ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%"]
+  [ "jbuilder" "subst" ] {pinned}
+  [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
+
 depends: [
+  "jbuilder" {build & >="1.0+beta10"}
   "mirage-xen" { >= "2.2.0" }
-  "ocamlfind" {build}
-  "ocamlbuild" {build}
-  "topkg" {build}
-  "lwt"
+  "lwt" {>="2.4.3"}
   "astring"
   "parse-argv"
 ]
