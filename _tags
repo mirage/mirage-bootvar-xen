@@ -1,5 +1,0 @@
-true: annot, bin_annot
-true: warn(A-44), strict_sequence
-
-<lib> : include
-<lib/*>: package(astring, lwt, parse-argv, mirage-xen)

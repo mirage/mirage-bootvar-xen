@@ -1,4 +1,4 @@
-# Bootvar
+## mirage-bootvar-xen -- library for reading MirageOS unikernel boot parameters in Xen
 
 [![Build Status](https://travis-ci.org/mirage/mirage-bootvar-xen.svg)](https://travis-ci.org/mirage/mirage-bootvar-xen)
 
@@ -27,5 +27,5 @@ opam install mirage-bootvar-xen
 ```
 
 ## License
-Bootvar is published under the ISC license. See [LICENSE](LICENSE) for details.
 
+Bootvar is published under the ISC license. See [LICENSE](LICENSE) for details.
