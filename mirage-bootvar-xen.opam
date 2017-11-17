@@ -19,3 +19,5 @@ depends: [
   "astring"
   "parse-argv"
 ]
+
+available: [ ocaml-version >= "4.04.2" ]
