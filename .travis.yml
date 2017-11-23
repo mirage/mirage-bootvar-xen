@@ -8,4 +8,5 @@ env:
   global:
   - PACKAGE="mirage-bootvar-xen"
   matrix:
-  - DISTRO="alpine" OCAML_VERSION="4.04.2"
+  - DISTRO=alpine OCAML_VERSION=4.04.2
+  - DISTRO=alpine OCAML_VERSION=4.05.0
