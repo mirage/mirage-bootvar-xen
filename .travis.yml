@@ -1,12 +1,13 @@
 language: c
-sudo: false
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-docker.sh
+script: bash -ex .travis-docker.sh
 services:
-  - docker
-install: wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-docker.sh
-script: bash -ex ./.travis-docker.sh
+- docker
 env:
   global:
-  - PACKAGE="mirage-bootvar-xen"
+  - PINS="mirage-bootvar-xen:."
+  - DISTRO="debian-stable"
   matrix:
-  - DISTRO=alpine OCAML_VERSION=4.04.2
-  - DISTRO=alpine OCAML_VERSION=4.05.0
+  - PACKAGE="mirage-bootvar-xen" OCAML_VERSION="4.04.2"
+  - PACKAGE="mirage-bootvar-xen" OCAML_VERSION="4.05.0"
+  - PACKAGE="mirage-bootvar-xen" OCAML_VERSION="4.06.0"
