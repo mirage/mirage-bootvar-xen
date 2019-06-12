@@ -10,3 +10,4 @@ env:
   matrix:
   - DISTRO=alpine OCAML_VERSION=4.04.2
   - DISTRO=alpine OCAML_VERSION=4.05.0
+  - DISTRO=alpine OCAML_VERSION=4.07.1
