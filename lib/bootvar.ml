@@ -16,6 +16,8 @@
  *)
 open Lwt
 
+module OS = Os_xen
+
 type t = { cmd_line : string;
            parameters : (string * string) list }
 
@@ -33,7 +35,7 @@ let get_cmd_line () =
        let cmdline = (OS.Start_info.get ()).OS.Start_info.cmd_line in
        Lwt.return cmdline)
 
-let create () = 
+let create () =
   get_cmd_line () >>= fun cmd_line_raw ->
   (* Strip leading whitespace *)
   let filter_map fn l =
@@ -55,7 +57,7 @@ let create () =
     in
     Lwt.return { cmd_line=cmd_line_raw ; parameters}
 
-let get_exn t parameter = 
+let get_exn t parameter =
   try
     List.assoc parameter t.parameters
   with
