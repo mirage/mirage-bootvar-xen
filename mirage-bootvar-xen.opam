@@ -6,6 +6,7 @@ authors: "Magnus Skjegstad <magnus@skjegstad.com>"
 homepage: "https://github.com/mirage/mirage-bootvar-xen"
 bug-reports: "https://github.com/mirage/mirage-bootvar-xen/issues/"
 dev-repo: "git+https://github.com/mirage/mirage-bootvar-xen.git"
+doc: "https://mirage.github.io/mirage-bootvar-xen/"
 license: "ISC"
 
 build: [
@@ -15,9 +16,13 @@ build: [
 
 depends: [
   "dune" {build & >= "1.0"}
-  "mirage-xen" { >= "2.2.0" }
+  "mirage-xen" { >= "4.0.0"}
   "lwt" {>="2.4.3"}
   "astring"
   "parse-argv"
   "ocaml" { >= "4.04.2" }
+]
+
+pin-depends: [
+  ["mirage-xen.dev" "git+https://github.com/mirage/mirage-xen"]
 ]
