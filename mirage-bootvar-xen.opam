@@ -22,7 +22,3 @@ depends: [
   "parse-argv"
   "ocaml" { >= "4.04.2" }
 ]
-
-pin-depends: [
-  ["mirage-xen.dev" "git+https://github.com/mirage/mirage-xen"]
-]
