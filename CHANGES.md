@@ -1,3 +1,8 @@
+## v0.7.0 (2019-11-01)
+
+* Adapt to mirage-xen 5.0.0 changes (#42 @dinosaure)
+* Require OCaml 4.06.0 now (#43 @hannesm)
+
 ## v0.6.0 (2019-06-17)
 
 * Port to dune from jbuilder (#38 @TheLortex @avsm)
