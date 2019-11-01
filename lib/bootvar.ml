@@ -16,8 +16,6 @@
  *)
 open Lwt
 
-module OS = Os_xen
-
 type t = { cmd_line : string;
            parameters : (string * string) list }
 
