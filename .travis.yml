@@ -7,8 +7,8 @@ script: bash -ex ./.travis-docker.sh
 env:
   global:
   - PACKAGE="mirage-bootvar-xen"
+  - DISTRO=alpine
   matrix:
-  - DISTRO=alpine OCAML_VERSION=4.04
-  - DISTRO=alpine OCAML_VERSION=4.05
-  - DISTRO=alpine OCAML_VERSION=4.06
-  - DISTRO=alpine OCAML_VERSION=4.07
+  - OCAML_VERSION=4.06
+  - OCAML_VERSION=4.07
+  - OCAML_VERSION=4.08
