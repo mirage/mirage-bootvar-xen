@@ -23,7 +23,6 @@ depends: [
   "dune" {>= "1.0"}
   "mirage-xen" {>= "6.0.0"}
   "lwt" {>="2.4.3"}
-  "astring"
   "parse-argv"
   "ocaml" { >= "4.08.0" }
 ]
